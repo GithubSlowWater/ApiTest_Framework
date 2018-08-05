@@ -72,11 +72,35 @@ class GetData:
 		col = int(data_config.get_result())
 		write_data = self.oper_excle.write_value(row,col,value)
 
-	# 获取以来数据的key
-	def get_depend_key(self,row):
-		col = int(data_config.get_data_depend())
-		depent_key = self.oper_excle.get_cell_value(row,col)
-		if depent_key == "":
-			return None
+	# 根据对应的caseid，找到对应行的内容
+	def get_rows_data(self,case_id):
+		row_num = self.get_row_num(case_id)
+		row_data= self.get_row_values(row_num)
+		return row_data
+
+	# 根据对应的caseid，找到对应的行号
+	def get_row_num(self,case_id):
+		num = 0
+		cols_data = self.get_cols_data()
+		for col_data in cols_data:
+			if case_id in col_data:
+				return num
+			num = num + 1
+
+	# 根据行号，找到该行的内容
+	def get_row_values(self,row):
+		tables = self.data
+		row_data = tables.row_value(row)
+		return row_data
+
+	# 获取某一列的内容
+	def get_cols_data(self,col_id=None):
+		if col_id is not None:
+			cols = self.data.col_values(col_id)
 		else:
-			return depent_key
+			cols = self.data.col_values(0)
+		return cols
+
+# if __name__ == '__main__':
+# 	r = GetData()
+# 	print (r.get_row_values(1))
