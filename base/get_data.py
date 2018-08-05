@@ -1,9 +1,9 @@
 # coding: utf-8
 import sys
-sys.path.append("E:\\Python\\Test_framework\\ApiTest\\base")
-from operation_excle import OpertionExcle
+sys.path.append("E:\\Python\\Test_framework\\ApiTest_Framework\\ApiTest_Framework")
+from util.operation_excle import OpertionExcle
 import data_config
-from operation_json import OpertionJson
+from util.operation_json import OpertionJson
 
 class GetData:
 	def __init__(self):

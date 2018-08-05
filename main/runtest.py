@@ -1,10 +1,10 @@
 # coding:utf-8
 import sys
-sys.path.append("E:\\Python\\Test_framework\\ApiTest")
+sys.path.append("E:\\Python\\Test_framework\\ApiTest_Framework\\ApiTest_Framework")
 
 from base.runmethod import RunMethod
 from base.get_data import GetData
-from util.common_utit import CommonUtil
+from util.common_util import CommonUtil
 class RunTest():
 	def __init__(self):
 		self.run_method = RunMethod()

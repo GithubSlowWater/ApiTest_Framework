@@ -1,6 +1,6 @@
 # coding:utf-8
 import sys
-sys.path.append("E:\\Python\\Test_framework\\ApiTest")
+sys.path.append("E:\\Python\\Test_framework\\ApiTest_Framework\\ApiTest_Framework")
 import xlrd
 from xlutils.copy import copy
 
