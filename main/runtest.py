@@ -5,6 +5,7 @@ sys.path.append("E:\\Python\\Test_framework\\ApiTest_Framework\\ApiTest_Framewor
 from base.runmethod import RunMethod
 from base.get_data import GetData
 from util.common_util import CommonUtil
+from case.dependent_data import DependdentData
 class RunTest():
 	def __init__(self):
 		self.run_method = RunMethod()
@@ -16,22 +17,23 @@ class RunTest():
 		res = None
 		rows_count = self.data.get_case_line()
 		for i in range(1,rows_count):
-			url = self.data.get_request_url(i)
-			print (url)
-			method = self.data.get_request_method(i)
 			is_run = self.data.get_is_run(i)
-			data = self.data.get_data_for_json(i)
-			print (data)
-			expect = self.data.get_expcet_data(i)
-			# print (expect)
-			header = self.data.is_header(i)
 			if is_run:
+				url = self.data.get_request_url(i)
+				method = self.data.get_request_method(i)
+				request_data = self.data.get_data_for_json(i)
+				expect = self.data.get_expcet_data(i)
+				header = self.data.is_header(i)
+				depend_case = self.data.is_depend(i)
 				res = self.run_method.run_main(method,url,data,header)
+				if depend_case != None:
+					self.dependent_data = DependdentData()
+					depend_response_data = self.depend_data.get_data_for_key(i)
+
 				if self.com_util.is_contain(expect, res):
 					self.data.write_result(i,'pass')
 				else:
 					self.data.write_result(i,'fail')
-			print (res)
 
 if __name__ == '__main__':
 	run = RunTest()
