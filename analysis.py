@@ -32,7 +32,7 @@ class Spider():
         return map(l, anchors)
 
     def __sort(self, anchors):
-        anchors = sorted(anchors, key=self.__sort_seed)
+        anchors = sorted(anchors, key=self.__sort_seed, reverse=True)
         return anchors
 
     def __sort_seed(self, anchor):
@@ -40,11 +40,13 @@ class Spider():
         number = float(r[0])
         if '万' in anchor['number']:
             number *= 10000
-        return anchor['number']
+        return number
 
     def __show(self, anchors):
-        for anchor in anchors:
-            print(anchor['name'] + '------' + anchor['number'])
+        for rank in range(0, len(anchors)):
+            print('排名' + str(rank + 1)
+                + '  : ' + anchors[rank]['name']
+                + '    人气： ' + anchors[rank]['number'])
 
     def go(self):
         htmls = self.__fetch_content()
